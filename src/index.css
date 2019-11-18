@@ -1,13 +1,16 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.siderToggle {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    width: 5px;
+    z-index: 30;
+    border-right: 0px solid transparent;
+    cursor: pointer;
+    transition: all .2s;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.siderToggle:hover {
+    width: 5px;
+    border-right: 5px solid rgba(255,255,255,.5);
 }

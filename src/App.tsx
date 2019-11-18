@@ -1,26 +1,66 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "antd/dist/antd.css";
+import "./App.css";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+import Dashboard from "./views/Dashboard/Dashboard";
+import Homebase from "./views/Homebase/Homebase";
+import Navigation from "./components/Navigation/Navigation";
+import HomebaseHistory from "./views/HomebaseHistory/HomebaseHistory";
+import { Layout } from "antd";
+const { Sider, Content } = Layout;
 
 const App: React.FC = () => {
+  const [collapsed, setCollapsed] = React.useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <Router>
+      <Layout>
+        <Sider
+          theme="dark"
+          trigger={null}
+          collapsible
+          collapsed={collapsed}
+          style={{
+            overflow: "auto",
+            height: "100vh",
+            position: "fixed",
+            left: 0
+          }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <div
+            className="siderToggle"
+            onClick={() => setCollapsed(!collapsed)}
+          />
+          <Navigation />
+        </Sider>
+        <Layout
+          style={{ marginLeft: collapsed ? 80 : 200, transition: "all 0.2s" }}
+        >
+          <Content
+            style={{
+              margin: "24px 16px",
+              padding: 24,
+              background: "#fff",
+              minHeight: "calc(100vh - 50px)"
+            }}
+          >
+            <Switch>
+              <Route path="/homebase/:homebaseId/history">
+                <HomebaseHistory />
+              </Route>
+              <Route path="/homebase/:homebaseId">
+                <Homebase />
+              </Route>
+              <Route path="/">
+                <Dashboard />
+              </Route>
+            </Switch>
+          </Content>
+        </Layout>
+      </Layout>
+    </Router>
   );
-}
+};
 
 export default App;
