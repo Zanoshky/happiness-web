@@ -1,12 +1,41 @@
-.chart {
-    height:50vh;
-    width:60vw;
-    background: white;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
-
+.mainCircle {
+  border-radius: 50%;
+  transition: all 0.8s;
+  width: 300px;
+  margin: 20px auto;
+  padding: 20px;
+  /*border: 2px solid;*/
+  /*box-shadow: 0 0 30px #00000011, inset 0 0 30px #00000011;*/
 }
 
-.chart:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+.mainCircle.good {
+  /*border-color: var(--color-positive);*/
+  background-color: var(--color-positive);
+}
+
+.mainCircle.ok {
+  /*border-color: var(--color-warning);*/
+  background-color: var(--color-warning);
+}
+
+.mainCircle.bad {
+  /*border-color: var(--color-negative);*/
+  background-color: var(--color-negative);
+}
+
+.mainCircle > div {
+  z-index: 30;
+  text-align: center;
+  font-size: 44px;
+  color: white;
+  line-height: 1.2;
+}
+.mainCircle span {
+  display: block;
+  font-size: 24px;
+}
+
+.nowItems {
+  margin: 40px 0 0;
+  display: flex;
 }

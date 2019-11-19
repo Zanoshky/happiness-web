@@ -1,16 +1,42 @@
+:root {
+  --color-negative: #EB1C4C;
+  --color-negative-1: #F26D8C;
+  --color-negative-2: #ED446C;
+  --color-negative-3: #C6002E;
+  --color-negative-4: #9C0024;
+
+  --color-warning: #FFA51F;
+  --color-warning-1: #FFC773;
+  --color-warning-2: #FFB649;
+  --color-warning-3: #D88100;
+  --color-warning-4: #AA6600;
+
+  --color-info: #1F62A7;
+  --color-info-1: #6294C7;
+  --color-info-2: #3D77B3;
+  --color-info-3: #0B4A8C;
+  --color-info-4: #073A6E;
+
+  --color-positive: #64DF1B;
+  --color-positive-1: #9AEB6A;
+  --color-positive-2: #7EE441;
+  --color-positive-3: #46BD00;
+  --color-positive-4: #379400;
+}
+
 .siderToggle {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    top: 0;
-    width: 5px;
-    z-index: 30;
-    border-right: 0px solid transparent;
-    cursor: pointer;
-    transition: all .2s;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  width: 5px;
+  z-index: 30;
+  border-right: 0px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s;
 }
 
 .siderToggle:hover {
-    width: 5px;
-    border-right: 5px solid rgba(255,255,255,.5);
+  width: 5px;
+  border-right: 5px solid rgba(255, 255, 255, 0.5);
 }
