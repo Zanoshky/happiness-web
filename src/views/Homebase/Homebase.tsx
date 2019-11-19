@@ -6,11 +6,11 @@ import {
 import "./Homebase.css";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 import classnames from "classnames";
-import SimpleChart from "../../components/SimpleChart/SimpleChart";
+import SimpleChart, {ComponentDataType} from "../../components/SimpleChart/SimpleChart";
 
-const data = [
+const data: ComponentDataType = [
   {
-    id: "negative",
+    id: 'qweqwe',
     data: [
       { x: 0, y: 4 },
       { x: 1, y: 5 },

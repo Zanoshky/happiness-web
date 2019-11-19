@@ -14,8 +14,10 @@ const commonProperties = {
   lineWidth: 3
 };
 
+export type ComponentDataType = {id: string | number, data: {x: number, y: number}[] }[]
+
 interface IProps extends ComponentProps<any> {
-  data: {id: string | number, data: {x: number, y: number}[] }[];
+  data: ComponentDataType;
   name?: string;
 }
 
