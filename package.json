@@ -25,7 +25,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "docker:build": "docker build -t happiness-web .",
-    "docker:run": "docker run -p 80:8443 -d happiness-web"
+    "docker:run": "docker run -p 80:80 -d happiness-web --name happiness_web",
+    "docker:logs": "docker logs happiness_web"
   },
   "dependencies": {
     "@nivo/generators": "^0.59.0",
