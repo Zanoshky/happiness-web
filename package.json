@@ -25,7 +25,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "docker:build": "docker build -t happiness-web .",
-    "docker:run": "docker run -p 80:80 -d happiness-web --name happiness_web",
+    "docker:run": "docker run --name happiness_web -p 80:80 -d happiness-web",
     "docker:logs": "docker logs happiness_web"
   },
   "dependencies": {
