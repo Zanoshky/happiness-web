@@ -17,7 +17,7 @@ const commonProperties = {
 export type ComponentDataType = { id: string | number; data: { x: string; y: number }[] }[];
 
 interface IProps extends ComponentProps<any> {
-  data: ComponentDataType;
+  data: any;
   name?: string;
 }
 
