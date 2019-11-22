@@ -1,7 +1,32 @@
 {
   "name": "happiness-web",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "description": "happiness-web",
+  "keywords": [
+    "reactks-application",
+    "reactjs",
+    "codename-happiness",
+    "happiness",
+    "iot-project",
+    "health",
+    "measurement"
+  ],
+  "repository": {
+    "type": "git"
+  },
+  "author": "Brendan Mullins <4624141+jsnanigans@users.noreply.github.com>",
+  "contributors": [
+    "Marko Zanoski <zanoski.marko@gmail.com>"
+  ],
+  "license": "GPL-3.0-or-later",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "docker:build": "docker build -t happiness-web .",
+    "docker:run": "docker run -p 80:8443 -d happiness-web"
+  },
   "dependencies": {
     "@nivo/generators": "^0.59.0",
     "@nivo/line": "^0.59.3",
@@ -22,12 +47,6 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
     "typescript": "^3.7.2"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
