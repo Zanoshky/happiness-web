@@ -8,8 +8,7 @@ const commonProperties = {
   enableGridX: false,
   enableGridY: false,
   colors: ["var(--color-info)"],
-  pointSize: 5,
-  enablePoints: true,
+  enablePoints: false,
   pointBorderWidth: 1.2,
   lineWidth: 3
 };
