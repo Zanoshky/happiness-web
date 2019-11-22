@@ -7,14 +7,14 @@ const commonProperties = {
   animate: true,
   enableGridX: false,
   enableGridY: false,
-  colors: ['var(--color-info)'],
+  colors: ["var(--color-info)"],
   pointSize: 5,
   enablePoints: true,
   pointBorderWidth: 1.2,
   lineWidth: 3
 };
 
-export type ComponentDataType = {id: string | number, data: {x: number, y: number}[] }[]
+export type ComponentDataType = { id: string | number; data: { x: string; y: number }[] }[];
 
 interface IProps extends ComponentProps<any> {
   data: ComponentDataType;
@@ -24,9 +24,7 @@ interface IProps extends ComponentProps<any> {
 const SimpleChart = (props: IProps) => {
   return (
     <div className={"sC"}>
-      <div className={"sCTop"}>
-        {props.name || ''}
-      </div>
+      <div className={"sCTop"}>{props.name || ""}</div>
       <div className="sCChart">
         <ResponsiveLine
           {...commonProperties}

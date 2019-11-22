@@ -1,27 +1,34 @@
 import React, { ComponentProps, useEffect } from "react";
-import {
-  CircularProgressbarWithChildren,
-  buildStyles
-} from "react-circular-progressbar";
+import { CircularProgressbarWithChildren, buildStyles } from "react-circular-progressbar";
 import "./Homebase.css";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 import classnames from "classnames";
-import SimpleChart, {ComponentDataType} from "../../components/SimpleChart/SimpleChart";
+import SimpleChart, { ComponentDataType } from "../../components/SimpleChart/SimpleChart";
 
-const data: ComponentDataType = [
+let data: ComponentDataType = [
   {
-    id: 'qweqwe',
+    id: "qweqwe",
     data: [
-      { x: 0, y: 4 },
-      { x: 1, y: 5 },
-      { x: 2, y: 8 },
-      { x: 3, y: 9 },
-      { x: 4, y: 9 },
-      { x: 5, y: 10 },
-      { x: 6, y: 9 },
-      { x: 7, y: 9.4 },
-      { x: 8, y: 11.6 },
-      { x: 9, y: 12 }
+      {
+        x: new Date(new Date().getTime() + 1 * 60 * 1000).toTimeString().split(" ")[0],
+        y: Math.floor(Math.random() * 100)
+      },
+      {
+        x: new Date(new Date().getTime() + 2 * 60 * 1000).toTimeString().split(" ")[0],
+        y: Math.floor(Math.random() * 100)
+      },
+      {
+        x: new Date(new Date().getTime() + 3 * 60 * 1000).toTimeString().split(" ")[0],
+        y: Math.floor(Math.random() * 100)
+      },
+      {
+        x: new Date(new Date().getTime() + 4 * 60 * 1000).toTimeString().split(" ")[0],
+        y: Math.floor(Math.random() * 100)
+      },
+      {
+        x: new Date(new Date().getTime() + 5 * 60 * 1000).toTimeString().split(" ")[0],
+        y: Math.floor(Math.random() * 100)
+      }
     ]
   }
 ];
@@ -79,8 +86,12 @@ const Homebase = (props: IProps) => {
       <section className={"nowItems"}>
         <SimpleChart data={data} name={"Light"} />
         <SimpleChart data={data} name={"Volume"} />
-        <SimpleChart data={data} name={"Humidity"} />
         <SimpleChart data={data} name={"Temperature"} />
+      </section>
+      <section className={"nowItems"}>
+        <SimpleChart data={data} name={"Humidity"} />
+        <SimpleChart data={data} name={"Dust"} />
+        <SimpleChart data={data} name={"Gas"} />
       </section>
     </>
   );
