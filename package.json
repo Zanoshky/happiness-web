@@ -26,6 +26,7 @@
     "eject": "react-scripts eject",
     "docker:build": "docker build -t happiness-web .",
     "docker:run": "docker run --name happiness_web -p 80:80 -d happiness-web",
+    "docker:remove": "docker stop happiness_web && docker rm happiness_web",
     "docker:logs": "docker logs happiness_web"
   },
   "dependencies": {
