@@ -21,12 +21,10 @@ class HomebaseHistory extends React.Component<{}, MyState> {
     }
   }
 
-  // Before mounting fetch the data
   componentWillMount() {
     this.getLatestData();
   }
 
-  // After mounting, fetch data each second
   componentDidMount() {
     this.intervalID = setInterval(() => this.getLatestData(), 1000);
   }
@@ -44,14 +42,14 @@ class HomebaseHistory extends React.Component<{}, MyState> {
       <div>
         <div>TestCharts</div>
         <section className={"nowItems"}>
-          <SimpleChart data={this.state.statuses[0]} name={"Light"} />
-          <SimpleChart data={this.state.statuses[1]} name={"Volume"} />
-          <SimpleChart data={this.state.statuses[2]} name={"Temperature"} />
+          <SimpleChart data={[this.state.statuses[0]]} name={"Light"} />
+          <SimpleChart data={[this.state.statuses[1]]} name={"Volume"} />
+          <SimpleChart data={[this.state.statuses[2]]} name={"Temperature"} />
         </section>
         <section className={"nowItems"}>
-          <SimpleChart data={this.state.statuses[5]} name={"Humidity"} />
-          <SimpleChart data={this.state.statuses[3]} name={"Dust"} />
-          <SimpleChart data={this.state.statuses[4]} name={"Gas"} />
+          <SimpleChart data={[this.state.statuses[5]]} name={"Humidity"} />
+          <SimpleChart data={[this.state.statuses[3]]} name={"Dust"} />
+          <SimpleChart data={[this.state.statuses[4]]} name={"Gas"} />
         </section>
       </div>
     );
