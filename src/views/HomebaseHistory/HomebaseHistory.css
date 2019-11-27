@@ -1,0 +1,40 @@
+.mainCircle {
+  border-radius: 50%;
+  transition: all 0.8s;
+  width: 220px;
+  margin: 10px auto;
+  border: 1px solid #666;
+}
+
+.mainCircle.good {
+  /*border-color: var(--color-positive);*/
+  background-color: var(--color-positive);
+}
+
+.mainCircle.ok {
+  /*border-color: var(--color-warning);*/
+  background-color: var(--color-warning);
+}
+
+.mainCircle.bad {
+  /*border-color: var(--color-negative);*/
+  background-color: var(--color-negative);
+}
+
+.mainCircle > div {
+  z-index: 30;
+  text-align: center;
+  font-size: 32px;
+  color: white;
+  line-height: 1.2;
+}
+.mainCircle span {
+  display: block;
+  font-size: 24px;
+}
+
+.nowItems {
+  margin: 0;
+  display: flex;
+  flex-flow: row wrap;
+}

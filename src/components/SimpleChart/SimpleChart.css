@@ -4,13 +4,16 @@
   border-radius: 5px;
   margin: 10px;
   overflow: hidden;
+  flex-grow: 1;
+  width: 30%;
+  min-width: 200px;
 }
 
 .sCTop {
   text-align: center;
   font-size: 1.2rem;
   font-weight: 700;
-  padding: 30px 0px;
+  padding: 10px 0px;
   border-bottom: 1px solid var(--color-info);
   margin: 0 0 0;
 }

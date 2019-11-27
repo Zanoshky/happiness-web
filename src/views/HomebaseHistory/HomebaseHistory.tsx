@@ -1,7 +1,7 @@
 import React from "react";
 import SimpleChart, { ComponentDataType } from "../../components/SimpleChart/SimpleChart";
 import { CircularProgressbarWithChildren, buildStyles } from "react-circular-progressbar";
-import "../Homebase/Homebase.css";
+import "./HomebaseHistory.css";
 import classnames from "classnames";
 
 type MyState = { statuses: Array<ComponentDataType> };
@@ -74,8 +74,6 @@ class HomebaseHistory extends React.Component<{}, MyState> {
           <SimpleChart data={[this.state.statuses[0]]} name={"Light"} />
           <SimpleChart data={[this.state.statuses[1]]} name={"Volume"} />
           <SimpleChart data={[this.state.statuses[2]]} name={"Temperature"} />
-        </section>
-        <section className={"nowItems"}>
           <SimpleChart data={[this.state.statuses[5]]} name={"Humidity"} />
           <SimpleChart data={[this.state.statuses[3]]} name={"Dust"} />
           <SimpleChart data={[this.state.statuses[4]]} name={"Gas"} />
