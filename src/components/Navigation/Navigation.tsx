@@ -1,11 +1,8 @@
-import React, {
-  ComponentProps,
-} from "react";
-import { Icon, Menu} from "antd";
+import React, { ComponentProps } from "react";
+import { Icon, Menu } from "antd";
 import { Link, RouteComponentProps, withRouter } from "react-router-dom";
-import './Navigataion.css'
+import "./Navigataion.css";
 const { SubMenu } = Menu;
-
 
 interface IProps extends ComponentProps<any>, RouteComponentProps {}
 
@@ -50,12 +47,7 @@ const Navigation = (props: IProps) => {
 
   return (
     <>
-      <Menu
-        theme="dark"
-        mode="inline"
-        defaultSelectedKeys={[pathname]}
-        defaultOpenKeys={[activeHomebase]}
-      >
+      <Menu theme="dark" mode="inline" defaultSelectedKeys={[pathname]} defaultOpenKeys={[activeHomebase]}>
         <Menu.Item key={"/"}>
           <Link to={"/"}>
             <Icon type={"dashboard"} />

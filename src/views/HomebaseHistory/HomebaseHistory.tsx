@@ -1,8 +1,8 @@
 import React from "react";
 import SimpleChart, { ComponentDataType } from "../../components/SimpleChart/SimpleChart";
 import { CircularProgressbarWithChildren, buildStyles } from "react-circular-progressbar";
-import "./HomebaseHistory.css";
 import classnames from "classnames";
+import "./HomebaseHistory.css";
 
 type MyState = { statuses: Array<ComponentDataType> };
 
@@ -17,7 +17,6 @@ class HomebaseHistory extends React.Component<{}, MyState> {
     try {
       const res = await fetch("https://my-office-happiness.com:9443/status/1");
       const statuses = await res.json();
-      console.log(statuses);
       this.setState({ statuses: statuses });
     } catch (e) {
       console.log(e);
@@ -42,7 +41,7 @@ class HomebaseHistory extends React.Component<{}, MyState> {
     }
 
     const happy: any = this.state.statuses[6];
-    const percentage = happy.data[29].y;
+    const percentage = happy.data[29].y || 0;
     return (
       <div>
         <section>
@@ -71,12 +70,12 @@ class HomebaseHistory extends React.Component<{}, MyState> {
           </div>
         </section>
         <section className={"nowItems"}>
-          <SimpleChart data={[this.state.statuses[0]]} name={"Light"} />
-          <SimpleChart data={[this.state.statuses[1]]} name={"Volume"} />
-          <SimpleChart data={[this.state.statuses[2]]} name={"Temperature"} />
-          <SimpleChart data={[this.state.statuses[5]]} name={"Humidity"} />
-          <SimpleChart data={[this.state.statuses[3]]} name={"Dust"} />
-          <SimpleChart data={[this.state.statuses[4]]} name={"Gas"} />
+          <SimpleChart chartMaxValue={1000} data={[this.state.statuses[0]]} name={"Light"} />
+          <SimpleChart chartMaxValue={150} data={[this.state.statuses[1]]} name={"Volume"} />
+          <SimpleChart chartMaxValue={50} data={[this.state.statuses[2]]} name={"Temperature"} />
+          <SimpleChart chartMaxValue={100} data={[this.state.statuses[5]]} name={"Humidity"} />
+          <SimpleChart chartMaxValue={2000} data={[this.state.statuses[3]]} name={"Dust"} />
+          <SimpleChart chartMaxValue={2000} data={[this.state.statuses[4]]} name={"Gas"} />
         </section>
       </div>
     );
