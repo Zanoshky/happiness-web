@@ -3,6 +3,7 @@ import SimpleChart, { ComponentDataType } from "../../components/SimpleChart/Sim
 import { CircularProgressbarWithChildren, buildStyles } from "react-circular-progressbar";
 import classnames from "classnames";
 import "./HomebaseHistory.css";
+import RealtimeCharts from "../../components/RealtimeChart/RealtimeCharts";
 
 type MyState = { statuses: Array<ComponentDataType> };
 
@@ -41,33 +42,10 @@ class HomebaseHistory extends React.Component<{}, MyState> {
     }
 
     const happy: any = this.state.statuses[6];
-    const percentage = happy.data[29].y || 0;
     return (
       <div>
         <section>
-          <div
-            className={classnames("mainCircle", {
-              good: percentage > 80,
-              ok: percentage > 50 && percentage <= 80,
-              bad: percentage > 0 && percentage <= 50
-            })}
-          >
-            <CircularProgressbarWithChildren
-              value={percentage}
-              styles={buildStyles({
-                strokeLinecap: "round",
-                pathTransitionDuration: 1,
-                pathColor: `rgba(255,255,255,.8)`,
-                trailColor: "transparent",
-                backgroundColor: "transparent"
-              })}
-            >
-              <div>
-                <strong>{percentage}%</strong>
-                <span>HAPPINESS</span>
-              </div>
-            </CircularProgressbarWithChildren>
-          </div>
+          <RealtimeCharts chartMaxValue={100} data={[happy]} name={"Happiness"} />
         </section>
         <section className={"nowItems"}>
           <SimpleChart chartMaxValue={1000} data={[this.state.statuses[0]]} name={"Light"} />

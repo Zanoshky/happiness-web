@@ -31,7 +31,7 @@ const SimpleChart = (props: IProps) => {
       <div className="sCChart">
         <ResponsiveLine
           {...commonProperties}
-          curve={"natural"}
+          curve={"monotoneX"}
           pointBorderColor={"white"}
           enableArea={true}
           areaOpacity={0.09}

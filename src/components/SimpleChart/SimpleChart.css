@@ -3,7 +3,6 @@
   border: 1px solid var(--color-info-1);
   border-radius: 5px;
   margin: 10px;
-  overflow: hidden;
   flex-grow: 1;
   width: 30%;
   min-width: 200px;

@@ -1,0 +1,23 @@
+.lC {
+  width: 100%;
+  border-radius: 5px;
+  margin: 10px;
+  flex-grow: 1;
+  width: calc(100% - 20px);
+  min-width: 200px;
+  background: var(--color-info-3);
+}
+
+.lCTop {
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 500;
+  padding: 15px 0px 15px;
+  color: white;
+  margin: 0 0 0;
+}
+
+.lCChart {
+  height: 250px;
+  width: 100%;
+}
