@@ -1,23 +1,46 @@
 .lC {
   width: 100%;
-  border-radius: 5px;
   margin: 10px;
   flex-grow: 1;
   width: calc(100% - 20px);
   min-width: 200px;
-  background: var(--color-info-3);
 }
 
 .lCTop {
   text-align: center;
   font-size: 1.4rem;
   font-weight: 500;
+  border-radius: 5px 5px 0 0;
+  border: 1px solid var(--color-info-3);
+  border-bottom: 0;
   padding: 15px 0px 15px;
-  color: white;
+  /* color: white; */
   margin: 0 0 0;
 }
 
 .lCChart {
   height: 250px;
   width: 100%;
+  z-index: 3;
+  position: relative;
+}
+
+.lCChart::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 100%;
+  display: block;
+  border-radius: 0 0 5px 5px;
+  box-shadow: inset 0 20px 25px -25px #000e;
+  background-image: linear-gradient(
+    var(--color-positive) 0%,
+    var(--color-negative) 100%,
+    var(--color-warning) 66% /* var(--color-positive) 33%, */ /* var(--color-warning) 34%, */
+      /* var(--color-negative) 67%, */
+  );
+  opacity: 0.95;
+  z-index: -1;
+  content: "";
 }

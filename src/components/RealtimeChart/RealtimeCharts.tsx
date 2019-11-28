@@ -4,7 +4,7 @@ import { ResponsiveLine } from "@nivo/line";
 import dayjs from "dayjs";
 
 const commonProperties = {
-  margin: { top: 10, right: 0, bottom: 15, left: 35 },
+  margin: { top: 20, right: 0, bottom: 20, left: 35 },
   animate: false,
   enableGridX: false,
   enableGridY: true,
@@ -57,7 +57,7 @@ const RealtimeCharts = (props: IProps) => {
           yScale={{
             type: "linear",
             min: 0,
-            max: 101
+            max: 100
           }}
           enablePoints={false}
           curve="monotoneX"
@@ -79,7 +79,7 @@ const RealtimeCharts = (props: IProps) => {
             },
             grid: {
               line: {
-                stroke: "rgba(255,255,255,.2)",
+                stroke: "rgba(255,255,255,.4)",
                 strokeWidth: 1,
                 strokeDasharray: "4 10"
               }
