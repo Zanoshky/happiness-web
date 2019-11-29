@@ -1,100 +1,81 @@
-import React, { ComponentProps, useEffect } from "react";
+import React from "react";
 import { CircularProgressbarWithChildren, buildStyles } from "react-circular-progressbar";
 import "./Homebase.css";
-import { RouteComponentProps, withRouter } from "react-router-dom";
 import classnames from "classnames";
-import SimpleChart, { ComponentDataType } from "../../components/SimpleChart/SimpleChart";
+import BlockData from "../../components/BlockData/BlockData";
 
-let data: ComponentDataType = [
-  {
-    id: "qweqwe",
-    data: [
-      {
-        x: new Date(new Date().getTime() + 1 * 60 * 1000).toTimeString().split(" ")[0],
-        y: Math.floor(Math.random() * 100)
-      },
-      {
-        x: new Date(new Date().getTime() + 2 * 60 * 1000).toTimeString().split(" ")[0],
-        y: Math.floor(Math.random() * 100)
-      },
-      {
-        x: new Date(new Date().getTime() + 3 * 60 * 1000).toTimeString().split(" ")[0],
-        y: Math.floor(Math.random() * 100)
-      },
-      {
-        x: new Date(new Date().getTime() + 4 * 60 * 1000).toTimeString().split(" ")[0],
-        y: Math.floor(Math.random() * 100)
-      },
-      {
-        x: new Date(new Date().getTime() + 5 * 60 * 1000).toTimeString().split(" ")[0],
-        y: Math.floor(Math.random() * 100)
-      }
-    ]
+type MyState = { statuses: Array<number>; homebaseId: number };
+
+class Homebase extends React.Component<{}, MyState> {
+  intervalID: any;
+
+  async getLatestData() {
+    try {
+      const res = await fetch("https://my-office-happiness.com:9443/current/1");
+      const statuses = await res.json();
+      this.setState({ statuses: statuses });
+    } catch (e) {
+      console.log(e);
+    }
   }
-];
 
-interface IParams {
-  homebaseId: string;
-}
-interface IProps extends ComponentProps<any>, RouteComponentProps<IParams> {}
+  componentWillMount() {
+    this.getLatestData();
+  }
 
-const Homebase = (props: IProps) => {
-  const { params } = props.match;
-  const [percentage, setPercentage] = React.useState(0);
+  componentDidMount() {
+    this.intervalID = setInterval(() => this.getLatestData(), 1000);
+  }
 
-  useEffect(() => {
-    setTimeout(() => {
-      setPercentage(Math.floor(Math.random() * 100));
-    }, 0);
-  }, [params]);
+  componentWillUnmount() {
+    clearInterval(this.intervalID);
+  }
 
-  // let status = "bad";
-  // if (percentage > 50) {
-  //   status = "ok";
-  // }
-  // if (percentage > 80) {
-  //   status = "good";
-  // }
-  return (
-    <>
-      <section>
-        <div
-          className={classnames("mainCircle", {
-            good: percentage > 80,
-            ok: percentage > 50 && percentage <= 80,
-            bad: percentage > 0 && percentage <= 50
-          })}
-        >
-          <CircularProgressbarWithChildren
-            value={percentage}
-            styles={buildStyles({
-              strokeLinecap: "round",
-              pathTransitionDuration: 1,
-              pathColor: `rgba(255,255,255,.8)`,
-              trailColor: "transparent",
-              backgroundColor: "transparent"
+  render = () => {
+    if (this.state === null || this.state.statuses === null) {
+      return <div></div>;
+    }
+
+    const percentage: number = this.state.statuses[6];
+
+    return (
+      <div>
+        <section>
+          <div
+            className={classnames("mainCircle", {
+              good: percentage > 80,
+              ok: percentage > 50 && percentage <= 80,
+              bad: percentage > 0 && percentage <= 50
             })}
           >
-            <div>
-              <strong>{percentage}%</strong>
-              <span>HAPPINESS</span>
-            </div>
-          </CircularProgressbarWithChildren>
-        </div>
-      </section>
+            <CircularProgressbarWithChildren
+              value={percentage}
+              styles={buildStyles({
+                strokeLinecap: "round",
+                pathTransitionDuration: 1,
+                pathColor: `rgba(255,255,255,.8)`,
+                trailColor: "transparent",
+                backgroundColor: "transparent"
+              })}
+            >
+              <div>
+                <strong>{percentage}%</strong>
+                <span>HAPPINESS</span>
+              </div>
+            </CircularProgressbarWithChildren>
+          </div>
+        </section>
+        <section className={"nowItems"}>
+          <BlockData chartMaxValue={1000} data={this.state.statuses[0]} name={"Light"} />
+          <BlockData chartMaxValue={150} data={this.state.statuses[1]} name={"Volume"} />
+          <BlockData chartMaxValue={50} data={this.state.statuses[2]} name={"Temperature"} />
+          <BlockData chartMaxValue={100} data={this.state.statuses[5]} name={"Humidity"} />
+          <BlockData chartMaxValue={2000} data={this.state.statuses[3]} name={"Dust"} />
+          <BlockData chartMaxValue={2000} data={this.state.statuses[4]} name={"Gas"} />
+        </section>
+      </div>
+    );
+  };
+}
 
-      <section className={"nowItems"}>
-        <SimpleChart data={data} name={"Light"} />
-        <SimpleChart data={data} name={"Volume"} />
-        <SimpleChart data={data} name={"Temperature"} />
-      </section>
-      <section className={"nowItems"}>
-        <SimpleChart data={data} name={"Humidity"} />
-        <SimpleChart data={data} name={"Dust"} />
-        <SimpleChart data={data} name={"Gas"} />
-      </section>
-    </>
-  );
-};
-
-export default withRouter(Homebase);
+export default Homebase;

@@ -1,11 +1,10 @@
 .mainCircle {
   border-radius: 50%;
   transition: all 0.8s;
-  width: 300px;
-  margin: 20px auto;
-  padding: 6px;
-  /*border: 2px solid;*/
-  /*box-shadow: 0 0 30px #00000011, inset 0 0 30px #00000011;*/
+  width: 50%;
+  max-width: 800px;
+  margin: auto auto;
+  padding: 12px;
 }
 
 .mainCircle.good {
@@ -30,12 +29,8 @@
   color: white;
   line-height: 1.2;
 }
+
 .mainCircle span {
   display: block;
   font-size: 24px;
-}
-
-.nowItems {
-  margin: 40px 0 0;
-  display: flex;
 }
