@@ -1,10 +1,11 @@
 .mainCircle {
   border-radius: 50%;
   transition: all 0.8s;
-  width: 50%;
-  max-width: 800px;
-  margin: auto auto;
-  padding: 12px;
+  min-width: 200px;
+  width: 100%;
+  max-width: 340px;
+  margin: auto auto 20px auto;
+  padding: 1em;
 }
 
 .mainCircle.good {
@@ -25,12 +26,18 @@
 .mainCircle > div {
   z-index: 30;
   text-align: center;
-  font-size: 44px;
+  font-size: 2.2em;
   color: white;
   line-height: 1.2;
 }
 
 .mainCircle span {
   display: block;
-  font-size: 24px;
+  font-size: 0.8em;
+}
+
+.currentItems {
+  margin: 0;
+  display: flex;
+  flex-flow: row wrap;
 }

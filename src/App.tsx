@@ -28,15 +28,10 @@ const App: React.FC = () => {
             left: 0
           }}
         >
-          <div
-            className="siderToggle"
-            onClick={() => setCollapsed(!collapsed)}
-          />
+          <div className="siderToggle" onClick={() => setCollapsed(!collapsed)} />
           <Navigation />
         </Sider>
-        <Layout
-          style={{ marginLeft: collapsed ? 80 : 200, transition: "all 0.2s" }}
-        >
+        <Layout style={{ marginLeft: collapsed ? 80 : 200, transition: "all 0.2s" }}>
           <Content
             style={{
               margin: "24px 16px",

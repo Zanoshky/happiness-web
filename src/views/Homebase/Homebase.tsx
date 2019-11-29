@@ -9,9 +9,9 @@ type MyState = { statuses: Array<number>; homebaseId: number };
 class Homebase extends React.Component<{}, MyState> {
   intervalID: any;
 
-  async getLatestData() {
+  async getLatestData(homebaseId: number) {
     try {
-      const res = await fetch("https://my-office-happiness.com:9443/current/1");
+      const res = await fetch("https://my-office-happiness.com:9443/current/" + homebaseId);
       const statuses = await res.json();
       this.setState({ statuses: statuses });
     } catch (e) {
@@ -19,12 +19,17 @@ class Homebase extends React.Component<{}, MyState> {
     }
   }
 
+  async loadData(homebaseId: number) {
+    await this.getLatestData(homebaseId);
+    this.intervalID = setTimeout(() => this.loadData(homebaseId), 3000);
+  }
+
   componentWillMount() {
-    this.getLatestData();
+    this.getLatestData(1);
   }
 
   componentDidMount() {
-    this.intervalID = setInterval(() => this.getLatestData(), 1000);
+    this.loadData(1);
   }
 
   componentWillUnmount() {
@@ -65,13 +70,13 @@ class Homebase extends React.Component<{}, MyState> {
             </CircularProgressbarWithChildren>
           </div>
         </section>
-        <section className={"nowItems"}>
-          <BlockData chartMaxValue={1000} data={this.state.statuses[0]} name={"Light"} />
-          <BlockData chartMaxValue={150} data={this.state.statuses[1]} name={"Volume"} />
-          <BlockData chartMaxValue={50} data={this.state.statuses[2]} name={"Temperature"} />
-          <BlockData chartMaxValue={100} data={this.state.statuses[5]} name={"Humidity"} />
-          <BlockData chartMaxValue={2000} data={this.state.statuses[3]} name={"Dust"} />
-          <BlockData chartMaxValue={2000} data={this.state.statuses[4]} name={"Gas"} />
+        <section className={"currentItems"}>
+          <BlockData value={this.state.statuses[0]} name={"Light"} />
+          <BlockData value={this.state.statuses[1]} name={"Volume"} />
+          <BlockData value={this.state.statuses[2]} name={"Temperature"} />
+          <BlockData value={this.state.statuses[5]} name={"Humidity"} />
+          <BlockData value={this.state.statuses[3]} name={"Dust"} />
+          <BlockData value={this.state.statuses[4]} name={"Gas"} />
         </section>
       </div>
     );

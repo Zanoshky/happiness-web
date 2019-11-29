@@ -20,4 +20,9 @@
 .bDData {
   height: 50px;
   width: 100%;
+  z-index: 1;
+  text-align: center;
+  font-size: 3em;
+  color: #000;
+  line-height: 1.2;
 }

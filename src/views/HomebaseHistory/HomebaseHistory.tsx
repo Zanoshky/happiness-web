@@ -6,10 +6,11 @@ import RealtimeCharts from "../../components/RealtimeChart/RealtimeCharts";
 type MyState = { statuses: Array<ComponentDataType> };
 
 class HomebaseHistory extends React.Component<{}, MyState> {
+  intervalID: any;
 
-  async getLatestData() {
+  async getLatestData(homebaseId: number) {
     try {
-      const res = await fetch("https://my-office-happiness.com:9443/status/1");
+      const res = await fetch("https://my-office-happiness.com:9443/status/" + homebaseId);
       const statuses = await res.json();
       this.setState({ statuses: statuses });
     } catch (e) {
@@ -17,17 +18,17 @@ class HomebaseHistory extends React.Component<{}, MyState> {
     }
   }
 
+  async loadData(homebaseId: number) {
+    await this.getLatestData(homebaseId);
+    this.intervalID = setTimeout(() => this.loadData(1), 3000);
+  }
+
   componentWillMount() {
-    this.getLatestData();
+    this.getLatestData(1);
   }
 
   componentDidMount() {
-    this.loadData()
-  }
-
-  async loadData() {
-    await this.getLatestData()
-    setTimeout(() => this.loadData(), 3000);
+    this.loadData(1);
   }
 
   render = () => {
