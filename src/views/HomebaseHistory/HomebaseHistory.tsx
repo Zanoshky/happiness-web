@@ -8,7 +8,6 @@ import RealtimeCharts from "../../components/RealtimeChart/RealtimeCharts";
 type MyState = { statuses: Array<ComponentDataType> };
 
 class HomebaseHistory extends React.Component<{}, MyState> {
-  intervalID: any;
 
   constructor(props: any) {
     super(props);
@@ -29,11 +28,12 @@ class HomebaseHistory extends React.Component<{}, MyState> {
   }
 
   componentDidMount() {
-    this.intervalID = setInterval(() => this.getLatestData(), 1000);
+    this.loadData()
   }
 
-  componentWillUnmount() {
-    clearInterval(this.intervalID);
+  async loadData() {
+    await this.getLatestData()
+    setTimeout(() => this.loadData(), 3000);
   }
 
   render = () => {

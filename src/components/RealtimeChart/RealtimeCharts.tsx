@@ -33,14 +33,33 @@ const RealtimeCharts = (props: IProps) => {
         x: Date.now() + i
       };
     });
-    const allData = [...data[0].data, newData[0]];
-    const concatData = allData.slice(allData.length - 30, allData.length);
-    setData([
-      {
-        id: data[0].id,
-        data: concatData
+    let dataCopy = [...data]
+
+    let i = 0;
+    let int = setInterval(() => {
+      const newOne = {
+        y: newData[i].y,
+        x: Date.now() + i
       }
-    ]);
+
+      let allData = [...dataCopy[0].data, newOne];
+      // const concatData = allData.slice(allData.length - 10, allData.length);
+      if (allData.length > 30) {
+        allData = allData.slice(allData.length - 30)
+      }
+      dataCopy[0].data.push(newOne);
+      setData([
+        {
+          id: dataCopy[0].id,
+          data: allData
+        }
+      ]);
+      if (i === newData.length - 1) {
+        clearInterval(int)
+      }
+      i++
+    }, 3000 / newData.length)
+
   }, [props.data]);
 
   return (
