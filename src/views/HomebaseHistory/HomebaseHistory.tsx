@@ -1,17 +1,11 @@
 import React from "react";
 import SimpleChart, { ComponentDataType } from "../../components/SimpleChart/SimpleChart";
-import { CircularProgressbarWithChildren, buildStyles } from "react-circular-progressbar";
-import classnames from "classnames";
 import "./HomebaseHistory.css";
 import RealtimeCharts from "../../components/RealtimeChart/RealtimeCharts";
 
 type MyState = { statuses: Array<ComponentDataType> };
 
 class HomebaseHistory extends React.Component<{}, MyState> {
-
-  constructor(props: any) {
-    super(props);
-  }
 
   async getLatestData() {
     try {
@@ -42,6 +36,7 @@ class HomebaseHistory extends React.Component<{}, MyState> {
     }
 
     const happy: any = this.state.statuses[6];
+
     return (
       <div>
         <section>

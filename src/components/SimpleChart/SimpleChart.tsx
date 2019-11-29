@@ -22,8 +22,6 @@ interface IProps extends ComponentProps<any> {
   chartMaxValue?: number;
 }
 
-// const curveOptions = ['linear', 'monotoneX', 'step', 'stepBefore', 'stepAfter'];
-
 const SimpleChart = (props: IProps) => {
   return (
     <div className={"sC"}>

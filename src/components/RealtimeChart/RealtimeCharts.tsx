@@ -1,7 +1,6 @@
 import React, { ComponentProps } from "react";
 import "./RealtimeCharts.css";
 import { ResponsiveLine } from "@nivo/line";
-import dayjs from "dayjs";
 
 const commonProperties = {
   margin: { top: 20, right: 0, bottom: 20, left: 35 },
@@ -33,19 +32,19 @@ const RealtimeCharts = (props: IProps) => {
         x: Date.now() + i
       };
     });
-    let dataCopy = [...data]
+    let dataCopy = [...data];
 
     let i = 0;
     let int = setInterval(() => {
       const newOne = {
         y: newData[i].y,
         x: Date.now() + i
-      }
+      };
 
       let allData = [...dataCopy[0].data, newOne];
       // const concatData = allData.slice(allData.length - 10, allData.length);
       if (allData.length > 30) {
-        allData = allData.slice(allData.length - 30)
+        allData = allData.slice(allData.length - 30);
       }
       dataCopy[0].data.push(newOne);
       setData([
@@ -55,11 +54,10 @@ const RealtimeCharts = (props: IProps) => {
         }
       ]);
       if (i === newData.length - 1) {
-        clearInterval(int)
+        clearInterval(int);
       }
-      i++
-    }, 3000 / newData.length)
-
+      i++;
+    }, 3000 / newData.length);
   }, [props.data]);
 
   return (
@@ -78,7 +76,7 @@ const RealtimeCharts = (props: IProps) => {
             min: 0,
             max: 100
           }}
-          enablePoints={false}
+          enablePoints={true}
           curve="monotoneX"
           animate={false}
           motionStiffness={120}
