@@ -10,9 +10,11 @@ const Navigation = (props: IProps) => {
   const pathname = props.location.pathname;
 
   const homebases = [
-    { name: "Trantnerhof", slug: "hb0" },
-    { name: "Heisenberg", slug: "hb3" },
-    { name: "Quak Quak", slug: "its_a_duck" }
+    { name: "Heisenberg", slug: "1" },
+    { name: "Trantnerhof", slug: "2" },
+    { name: "Quak Quak", slug: "3" },
+    { name: "Quak Quak", slug: "4" },
+    { name: "Quak Quak", slug: "5" }
   ];
 
   const activeHomebase = homebases

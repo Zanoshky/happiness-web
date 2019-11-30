@@ -41,15 +41,9 @@ const App: React.FC = () => {
             }}
           >
             <Switch>
-              <Route path="/homebase/:homebaseId/history">
-                <HomebaseHistory />
-              </Route>
-              <Route path="/homebase/:homebaseId">
-                <Homebase />
-              </Route>
-              <Route path="/">
-                <Dashboard />
-              </Route>
+              <Route path="/homebase/:homebaseId/history" component={HomebaseHistory} />
+              <Route path="/homebase/:homebaseId" component={Homebase} />
+              <Route path="/" component={Dashboard} />
             </Switch>
           </Content>
         </Layout>

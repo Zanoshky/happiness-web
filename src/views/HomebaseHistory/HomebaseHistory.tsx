@@ -5,7 +5,7 @@ import RealtimeCharts from "../../components/RealtimeChart/RealtimeCharts";
 
 type MyState = { statuses: Array<ComponentDataType> };
 
-class HomebaseHistory extends React.Component<{}, MyState> {
+class HomebaseHistory extends React.Component<{ match: any }, MyState> {
   intervalID: any;
 
   async getLatestData(homebaseId: number) {
@@ -20,15 +20,15 @@ class HomebaseHistory extends React.Component<{}, MyState> {
 
   async loadData(homebaseId: number) {
     await this.getLatestData(homebaseId);
-    this.intervalID = setTimeout(() => this.loadData(1), 3000);
+    this.intervalID = setTimeout(() => this.loadData(homebaseId), 3000);
   }
 
   componentWillMount() {
-    this.getLatestData(1);
+    this.getLatestData(this.props.match.params.homebaseId);
   }
 
   componentDidMount() {
-    this.loadData(1);
+    this.loadData(this.props.match.params.homebaseId);
   }
 
   render = () => {

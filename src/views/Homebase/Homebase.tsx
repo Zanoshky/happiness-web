@@ -6,7 +6,7 @@ import BlockData from "../../components/BlockData/BlockData";
 
 type MyState = { statuses: Array<number>; homebaseId: number };
 
-class Homebase extends React.Component<{}, MyState> {
+class Homebase extends React.Component<{ match: any }, MyState> {
   intervalID: any;
 
   async getLatestData(homebaseId: number) {
@@ -25,11 +25,11 @@ class Homebase extends React.Component<{}, MyState> {
   }
 
   componentWillMount() {
-    this.getLatestData(1);
+    this.getLatestData(this.props.match.params.homebaseId);
   }
 
   componentDidMount() {
-    this.loadData(1);
+    this.loadData(this.props.match.params.homebaseId);
   }
 
   componentWillUnmount() {
