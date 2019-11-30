@@ -20,7 +20,7 @@ class HomebaseHistory extends React.Component<{ match: any }, MyState> {
 
   async loadData(homebaseId: number) {
     await this.getLatestData(homebaseId);
-    this.intervalID = setTimeout(() => this.loadData(homebaseId), 3000);
+    this.intervalID = setTimeout(() => this.loadData(homebaseId), 5000);
   }
 
   componentWillMount() {
@@ -29,6 +29,13 @@ class HomebaseHistory extends React.Component<{ match: any }, MyState> {
 
   componentDidMount() {
     this.loadData(this.props.match.params.homebaseId);
+  }
+
+  componentDidUpdate(prevProps: any) {
+    if (this.props.match.params.homebaseId !== prevProps.match.params.homebaseId) {
+      clearInterval(this.intervalID);
+      this.intervalID = setTimeout(() => this.loadData(this.props.match.params.homebaseId), 1000);
+    }
   }
 
   render = () => {

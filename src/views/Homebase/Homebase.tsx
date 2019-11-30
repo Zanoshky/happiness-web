@@ -14,6 +14,7 @@ class Homebase extends React.Component<{ match: any }, MyState> {
       const res = await fetch("https://my-office-happiness.com:9443/current/" + homebaseId);
       const statuses = await res.json();
       this.setState({ statuses: statuses });
+      console.log(homebaseId);
     } catch (e) {
       console.log(e);
     }
@@ -21,7 +22,7 @@ class Homebase extends React.Component<{ match: any }, MyState> {
 
   async loadData(homebaseId: number) {
     await this.getLatestData(homebaseId);
-    this.intervalID = setTimeout(() => this.loadData(homebaseId), 3000);
+    this.intervalID = setTimeout(() => this.loadData(homebaseId), 1000);
   }
 
   componentWillMount() {
@@ -34,6 +35,13 @@ class Homebase extends React.Component<{ match: any }, MyState> {
 
   componentWillUnmount() {
     clearInterval(this.intervalID);
+  }
+
+  componentDidUpdate(prevProps: any) {
+    if (this.props.match.params.homebaseId !== prevProps.match.params.homebaseId) {
+      clearInterval(this.intervalID);
+      this.intervalID = setTimeout(() => this.loadData(this.props.match.params.homebaseId), 1000);
+    }
   }
 
   render = () => {

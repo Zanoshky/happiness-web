@@ -57,7 +57,7 @@ const RealtimeCharts = (props: IProps) => {
         clearInterval(int);
       }
       i++;
-    }, 3000 / newData.length);
+    }, 5000 / newData.length);
   }, [props.data]);
 
   return (
