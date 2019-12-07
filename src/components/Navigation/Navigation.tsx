@@ -1,7 +1,7 @@
 import React, { ComponentProps } from "react";
+import "./Navigataion.css";
 import { Icon, Menu } from "antd";
 import { Link, RouteComponentProps, withRouter } from "react-router-dom";
-import "./Navigataion.css";
 const { SubMenu } = Menu;
 
 interface IProps extends ComponentProps<any>, RouteComponentProps {}
@@ -9,13 +9,7 @@ interface IProps extends ComponentProps<any>, RouteComponentProps {}
 const Navigation = (props: IProps) => {
   const pathname = props.location.pathname;
 
-  const homebases = [
-    { name: "Heisenberg", slug: "1" },
-    { name: "Trantnerhof", slug: "2" },
-    { name: "Quak Quak", slug: "3" },
-    { name: "Quak Quak", slug: "4" },
-    { name: "Quak Quak", slug: "5" }
-  ];
+  const homebases = [{ name: "Prototype", slug: "1" }];
 
   const activeHomebase = homebases
     .filter(p => pathname.indexOf(`/${p.slug}`) !== -1)

@@ -1,6 +1,6 @@
 import React from "react";
-import { CircularProgressbarWithChildren, buildStyles } from "react-circular-progressbar";
 import "./Homebase.css";
+import { CircularProgressbarWithChildren, buildStyles } from "react-circular-progressbar";
 import classnames from "classnames";
 import BlockData from "../../components/BlockData/BlockData";
 
@@ -14,7 +14,6 @@ class Homebase extends React.Component<{ match: any }, MyState> {
       const res = await fetch("https://my-office-happiness.com:9443/current/" + homebaseId);
       const statuses = await res.json();
       this.setState({ statuses: statuses });
-      console.log(homebaseId);
     } catch (e) {
       console.log(e);
     }
@@ -50,7 +49,7 @@ class Homebase extends React.Component<{ match: any }, MyState> {
     }
 
     const percentage: number = this.state.statuses[6];
-
+    console.log(this.state.statuses);
     return (
       <div>
         <section>

@@ -1,6 +1,6 @@
 import React from "react";
-import SimpleChart, { ComponentDataType } from "../../components/SimpleChart/SimpleChart";
 import "./HomebaseHistory.css";
+import SimpleChart, { ComponentDataType } from "../../components/SimpleChart/SimpleChart";
 import RealtimeCharts from "../../components/RealtimeChart/RealtimeCharts";
 
 type MyState = { statuses: Array<ComponentDataType> };
@@ -29,6 +29,10 @@ class HomebaseHistory extends React.Component<{ match: any }, MyState> {
 
   componentDidMount() {
     this.loadData(this.props.match.params.homebaseId);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.intervalID);
   }
 
   componentDidUpdate(prevProps: any) {
