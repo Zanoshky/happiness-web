@@ -55,8 +55,8 @@ class Homebase extends React.Component<{ match: any }, MyState> {
         <section>
           <div
             className={classnames("mainCircle", {
-              good: percentage > 80,
-              ok: percentage > 50 && percentage <= 80,
+              good: percentage >= 80,
+              ok: percentage > 50 && percentage <= 79,
               bad: percentage > 0 && percentage <= 50
             })}
           >

@@ -38,7 +38,7 @@ class HomebaseHistory extends React.Component<{ match: any }, MyState> {
   componentDidUpdate(prevProps: any) {
     if (this.props.match.params.homebaseId !== prevProps.match.params.homebaseId) {
       clearInterval(this.intervalID);
-      this.intervalID = setTimeout(() => this.loadData(this.props.match.params.homebaseId), 1000);
+      this.intervalID = setTimeout(() => this.loadData(this.props.match.params.homebaseId), 5000);
     }
   }
 
@@ -52,15 +52,15 @@ class HomebaseHistory extends React.Component<{ match: any }, MyState> {
     return (
       <div>
         <section>
-          <RealtimeCharts chartMaxValue={100} data={[happy]} name={"Happiness"} />
+          <RealtimeCharts chartMaxValue={100} data={[happy]} name={"Happiness"} style="primary" />
         </section>
         <section className={"nowItems"}>
-          <SimpleChart chartMaxValue={1000} data={[this.state.statuses[0]]} name={"Light"} />
-          <SimpleChart chartMaxValue={150} data={[this.state.statuses[1]]} name={"Volume"} />
-          <SimpleChart chartMaxValue={50} data={[this.state.statuses[2]]} name={"Temperature"} />
-          <SimpleChart chartMaxValue={100} data={[this.state.statuses[5]]} name={"Humidity"} />
-          <SimpleChart chartMaxValue={2000} data={[this.state.statuses[3]]} name={"Dust"} />
-          <SimpleChart chartMaxValue={2000} data={[this.state.statuses[4]]} name={"Gas"} />
+          <RealtimeCharts chartMaxValue={1000} data={[this.state.statuses[0]]} name={"Light"} />
+          <RealtimeCharts chartMaxValue={150} data={[this.state.statuses[1]]} name={"Volume"} />
+          <RealtimeCharts chartMaxValue={50} data={[this.state.statuses[2]]} name={"Temperature"} />
+          <RealtimeCharts chartMaxValue={100} data={[this.state.statuses[5]]} name={"Humidity"} />
+          <RealtimeCharts chartMaxValue={2000} data={[this.state.statuses[3]]} name={"Dust"} />
+          <RealtimeCharts chartMaxValue={2000} data={[this.state.statuses[4]]} name={"Gas"} />
         </section>
       </div>
     );
