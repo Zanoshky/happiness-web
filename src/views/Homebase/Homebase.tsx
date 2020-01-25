@@ -3,15 +3,29 @@ import "./Homebase.css";
 import { CircularProgressbarWithChildren, buildStyles } from "react-circular-progressbar";
 import classnames from "classnames";
 import BlockData from "../../components/BlockData/BlockData";
+import Utils from "../../utils";
 
-type MyState = { statuses: Array<number>; homebaseId: number };
+type Measurement = {
+  id: string;
+  homebaseId: number;
+  timestamp: Date;
+  humidity: number;
+  temperature: number;
+  gas: number;
+  dust: number;
+  pressure: number;
+  volume: number;
+  light: number;
+  happiness: number;
+};
+type MyState = { statuses: Array<Measurement>; homebaseId: number };
 
 class Homebase extends React.Component<{ match: any }, MyState> {
   intervalID: any;
 
   async getLatestData(homebaseId: number) {
     try {
-      const res = await fetch("https://my-office-happiness.com:9443/current/" + homebaseId);
+      const res = await fetch(Utils.getApiUri() + "/status/" + homebaseId);
       const statuses = await res.json();
       this.setState({ statuses: statuses });
     } catch (e) {
@@ -48,8 +62,8 @@ class Homebase extends React.Component<{ match: any }, MyState> {
       return <div></div>;
     }
 
-    const percentage: number = this.state.statuses[6];
-    console.log(this.state.statuses);
+    const percentage: number = this.state.statuses[0].happiness;
+
     return (
       <div>
         <section>
@@ -78,12 +92,13 @@ class Homebase extends React.Component<{ match: any }, MyState> {
           </div>
         </section>
         <section className={"currentItems"}>
-          <BlockData value={this.state.statuses[0]} name={"Light"} />
-          <BlockData value={this.state.statuses[1]} name={"Volume"} />
-          <BlockData value={this.state.statuses[2]} name={"Temperature"} />
-          <BlockData value={this.state.statuses[5]} name={"Humidity"} />
-          <BlockData value={this.state.statuses[3]} name={"Dust"} />
-          <BlockData value={this.state.statuses[4]} name={"Gas"} />
+          <BlockData value={this.state.statuses[0].volume} name={"Volume"} />
+          <BlockData value={this.state.statuses[0].light} name={"Light"} />
+          <BlockData value={this.state.statuses[0].temperature} name={"Temperature"} />
+          <BlockData value={this.state.statuses[0].humidity} name={"Humidity"} />
+          <BlockData value={this.state.statuses[0].dust} name={"Dust"} />
+          <BlockData value={this.state.statuses[0].pressure} name={"Pressure"} />
+          <BlockData value={this.state.statuses[0].gas} name={"Gas"} />
         </section>
       </div>
     );

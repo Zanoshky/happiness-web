@@ -11,7 +11,7 @@ interface IProps extends ComponentProps<any> {
   data: any;
   name?: string;
   chartMaxValue?: number;
-  style?: ChartStyles;
+  chartStyle?: ChartStyles;
 }
 
 const primaryTheme = {
@@ -83,7 +83,7 @@ const secondaryTheme = {
 };
 
 const addTimestamps = (data: any) => {
-  const d = data[0].data.map((v: any, i: number) => {
+  const d = data.map((v: any, i: number) => {
     return {
       y: v.y,
       x: Date.now() + i
@@ -93,16 +93,16 @@ const addTimestamps = (data: any) => {
 };
 
 const RealtimeCharts = (props: IProps) => {
-  const { name = "Chart", chartMaxValue = 100, style = "secondary" } = props;
+  const { name = "Chart", chartMaxValue = 100, chartStyle = "secondary" } = props;
   const [data, setData] = React.useState(addTimestamps(props.data));
   const [theme, setTheme] = React.useState(primaryTheme);
 
-  const classNameBase = style === "secondary" ? "sC" : "lC";
-  const numberOfPoints = style === "secondary" ? 20 : 30;
+  const classNameBase = chartStyle === "secondary" ? "sC" : "lC";
+  const numberOfPoints = chartStyle === "secondary" ? 20 : 30;
 
   React.useEffect(() => {
-    setTheme(style === "secondary" ? secondaryTheme : primaryTheme);
-  }, [style]);
+    setTheme(chartStyle === "secondary" ? secondaryTheme : primaryTheme);
+  }, [chartStyle]);
 
   React.useEffect(() => {
     const newData = addTimestamps(data)[0].data;
