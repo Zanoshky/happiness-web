@@ -2,16 +2,15 @@ import React, { ComponentProps } from "react";
 import "./RealtimeCharts.css";
 import "../SimpleChart/SimpleChart.css";
 import { ResponsiveLine } from "@nivo/line";
+import last from "lodash/last";
 
 export type ComponentDataType = { id: string | number; data: { x: string; y: number }[] }[];
-
-type ChartStyles = "primary" | "secondary";
 
 interface IProps extends ComponentProps<any> {
   data: any;
   name?: string;
   chartMaxValue?: number;
-  chartStyle?: ChartStyles;
+  chartStyle?: "primary" | "secondary";
 }
 
 const primaryTheme = {
@@ -83,7 +82,7 @@ const secondaryTheme = {
 };
 
 const addTimestamps = (data: any) => {
-  const d = data.map((v: any, i: number) => {
+  const d = data[0].data.map((v: any, i: number) => {
     return {
       y: v.y,
       x: Date.now() + i
@@ -135,6 +134,7 @@ const RealtimeCharts = (props: IProps) => {
 
       i++;
     }, 5000 / Math.floor(newData.length));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.data]);
 
   return (

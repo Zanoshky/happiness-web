@@ -64,21 +64,16 @@ class HomebaseHistory extends React.Component<{ match: any }, MyState> {
     return (
       <div>
         <section>
-          <RealtimeCharts
-            chartMaxValue={100}
-            data={[this.state.statuses[0].happiness]}
-            name={"Happiness"}
-            chartStyle="primary"
-          />
+          <RealtimeCharts chartMaxValue={100} data={[this.state.statuses[7]]} name={"Happiness"} chartStyle="primary" />
         </section>
         <section className={"nowItems"}>
-          <RealtimeCharts chartMaxValue={150} data={[this.state.statuses[0].volume]} name={"Volume"} />
-          <RealtimeCharts chartMaxValue={1000} data={[this.state.statuses[0].light]} name={"Light"} />
-          <RealtimeCharts chartMaxValue={50} data={[this.state.statuses[0].temperature]} name={"Temperature"} />
-          <RealtimeCharts chartMaxValue={100} data={[this.state.statuses[0].humidity]} name={"Humidity"} />
-          <RealtimeCharts chartMaxValue={2000} data={[this.state.statuses[0].dust]} name={"Dust"} />
-          <RealtimeCharts chartMaxValue={2000} data={[this.state.statuses[0].pressure]} name={"Pressure"} />
-          <RealtimeCharts chartMaxValue={2000} data={[this.state.statuses[0].gas]} name={"Gas"} />
+          <RealtimeCharts chartMaxValue={150} data={[this.state.statuses[1]]} name={"Volume"} />
+          <RealtimeCharts chartMaxValue={1000} data={[this.state.statuses[0]]} name={"Light"} />
+          <RealtimeCharts chartMaxValue={50} data={[this.state.statuses[2]]} name={"Temperature"} />
+          <RealtimeCharts chartMaxValue={100} data={[this.state.statuses[5]]} name={"Humidity"} />
+          <RealtimeCharts chartMaxValue={2000} data={[this.state.statuses[3]]} name={"Dust"} />
+          <RealtimeCharts chartMaxValue={2000} data={[this.state.statuses[6]]} name={"Pressure"} />
+          <RealtimeCharts chartMaxValue={2000} data={[this.state.statuses[4]]} name={"Gas"} />
         </section>
       </div>
     );
